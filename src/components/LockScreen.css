@@ -1,0 +1,115 @@
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lock-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  animation: fadeUp 0.4s ease both;
+}
+
+.lock-logo {
+  height: 48px;
+  width: auto;
+  filter: drop-shadow(0 2px 16px rgba(220,0,0,0.5));
+}
+
+.lock-label {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ── Dots ── */
+.lock-dots {
+  display: flex;
+  gap: 16px;
+}
+
+.lock-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.lock-dot.filled {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.lock-dot.error {
+  background: #e05252;
+  border-color: #e05252;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-6px); }
+  80%       { transform: translateX(6px); }
+}
+
+.lock-dots.shake {
+  animation: shake 0.55s ease both;
+}
+
+/* ── Numpad ── */
+.lock-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  gap: 10px;
+}
+
+.pad-btn {
+  width: 72px;
+  height: 72px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pad-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.pad-btn:active {
+  background: rgba(201,168,76,0.15);
+  transform: scale(0.94);
+}
+
+.pad-btn.pad-empty {
+  background: transparent;
+  border-color: transparent;
+  cursor: default;
+  pointer-events: none;
+}
+
+@media (max-width: 400px) {
+  .lock-pad { grid-template-columns: repeat(3, 64px); }
+  .pad-btn  { width: 64px; height: 64px; font-size: 20px; }
+}

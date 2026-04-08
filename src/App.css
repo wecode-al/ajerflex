@@ -1,0 +1,58 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+.header {
+  padding: 28px 48px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+
+.logo {
+  line-height: 1;
+}
+
+.logo-svg {
+  height: 44px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 12px rgba(220,0,0,0.4));
+}
+
+.tagline {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Main ── */
+.main {
+  flex: 1;
+  padding: 48px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 16px 48px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .header { padding: 20px 20px 16px; flex-direction: column; gap: 4px; }
+  .main { padding: 24px 16px; }
+  .footer { padding: 12px 20px; }
+}
