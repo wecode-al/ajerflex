@@ -93,6 +93,7 @@ export default function Search({ profile }) {
   const [discover, setDiscover] = useState(null)
   const [genreResults, setGenreResults] = useState([])
   const [genreLoading, setGenreLoading] = useState(false)
+  const [recentlyViewed, setRecentlyViewed] = useState([])
   const inputRef = useRef(null)
   const timerRef = useRef(null)
 
@@ -106,6 +107,8 @@ export default function Search({ profile }) {
   useEffect(() => {
     inputRef.current?.focus()
     fetchDiscover().then(setDiscover).catch(console.error)
+    const stored = JSON.parse(localStorage.getItem('ajerflix_recently_viewed') || '[]')
+    setRecentlyViewed(stored)
   }, [])
 
   useEffect(() => {
@@ -263,6 +266,14 @@ export default function Search({ profile }) {
     )
   }
 
+  const recentlyViewedMovies = recentlyViewed.map((entry) => ({
+    id: entry.id,
+    media_type: entry.mediaType,
+    title: entry.title,
+    name: entry.title,
+    poster_path: entry.posterPath,
+  }))
+
   return (
     <div className="search-page">
       {profile && (
@@ -350,6 +361,9 @@ export default function Search({ profile }) {
 
       {showDiscover && !activeGenre && filteredDiscover && (
         <div className="discover">
+          {recentlyViewedMovies.length > 0 && (
+            <Section title="Recently Viewed" items={recentlyViewedMovies} onSelect={handleSelect} />
+          )}
           {filteredDiscover.trendingItems.length > 0 && (
             <Section title="Trending Today" items={filteredDiscover.trendingItems} onSelect={handleSelect} />
           )}

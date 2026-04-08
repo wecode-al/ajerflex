@@ -117,6 +117,21 @@ export default function Player() {
     }
   }, [contentKey, id, normalizedMediaType])
 
+  useEffect(() => {
+    if (!contentState.content || contentState.key !== contentKey) return
+    const content = contentState.content
+    const entry = {
+      id: content.id,
+      mediaType: normalizedMediaType,
+      title: content.title || content.name,
+      posterPath: content.poster_path,
+      timestamp: Date.now(),
+    }
+    const prev = JSON.parse(localStorage.getItem('ajerflix_recently_viewed') || '[]')
+    const updated = [entry, ...prev.filter((v) => !(v.id === entry.id && v.mediaType === entry.mediaType))].slice(0, 20)
+    localStorage.setItem('ajerflix_recently_viewed', JSON.stringify(updated))
+  }, [contentState.content, contentState.key, contentKey, normalizedMediaType])
+
   const contentLoading = Boolean(normalizedMediaType) && contentState.key !== contentKey
   const content = contentState.key === contentKey ? contentState.content : null
   const contentError = !normalizedMediaType || (contentState.key === contentKey && contentState.error)
