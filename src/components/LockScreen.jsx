@@ -5,6 +5,7 @@ const PROFILES = {
   '0887': { name: 'boss',  greeting: 'The Boss is back.', sub: 'Welcome home.' },
   '9999': { name: 'nejdi', greeting: 'Welcome, Nejdi.', sub: 'Enjoy your movie.' },
   '6384': { name: 'guest', greeting: 'Welcome, Guest.', sub: 'Enjoy your stay & have a great time!' },
+  '1313': { name: 'redhead', greeting: 'Welcome Redhead', sub: 'Enjoy your movie.' },
 }
 
 export default function LockScreen({ onUnlock }) {
